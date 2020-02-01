@@ -2,7 +2,16 @@ import pyautogui as pygui
 import keyboard
 import time
 
-res = 5
+res = 3
+cells = []
+def createCells():
+    fx = ((x2 - x1) / res)
+    fy = ((y2 - y1) / res)
+    for yi in range(res + 1):
+        if yi != 0:
+            for xi in range(res + 1):
+                if xi != 0:
+                    cells.append([((fx*(xi-1))+x1, (fy*(yi-1))+y1), ((fx*xi)+x1, (fy*yi)+y1)])
 
 def cellDraw():
     fx = ((x2 - x1) / res)
@@ -34,6 +43,7 @@ while True:
 
 while True:
     if keyboard.is_pressed('z'):
+        createCells()
         cellDraw()
         print('done')
         break
