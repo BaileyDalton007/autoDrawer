@@ -1,4 +1,6 @@
 import pyautogui as pygui
+from PIL import Image
+import pyscreenshot
 import keyboard
 import time
 
@@ -40,7 +42,21 @@ def cellDraw(cell):
     pygui.dragTo(cx2, cy1)
     pygui.dragTo(cx1, cy1)
 
+while True:
+    if keyboard.is_pressed('c'):
+        ix1, iy1 = pygui.position()
+        print(ix1, iy1)
+        break
 
+time.sleep(1)
+
+while True:
+    if keyboard.is_pressed('c'):
+        ix2, iy2 = pygui.position()
+        im = pygui.screenshot(region=(ix1, iy1, (ix2 - ix1), (iy2 - iy1)))
+        im.show()
+        print(ix2, iy2)
+        break
 
 
 while True:
